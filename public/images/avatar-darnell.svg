@@ -1,0 +1,6 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="120" rx="60" fill="#111827"/>
+  <circle cx="60" cy="42" r="22" fill="#E2E8F0"/>
+  <path d="M24 103C29 81 43 69 60 69C77 69 91 81 96 103" fill="#F97316"/>
+  <text x="60" y="112" text-anchor="middle" fill="#F8FAFC" font-family="Manrope, Arial, sans-serif" font-size="18" font-weight="800">DR</text>
+</svg>

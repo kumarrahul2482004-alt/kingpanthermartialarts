@@ -1,0 +1,18 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#020617"/>
+  <rect width="1200" height="630" fill="url(#paint0_radial)"/>
+  <rect x="64" y="64" width="1072" height="502" rx="40" fill="#0F172A" fill-opacity="0.85" stroke="#334155"/>
+  <text x="106" y="212" fill="#FCA5A5" font-family="Manrope, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="8">KING PANTHER MARTIAL ARTS ACADEMY</text>
+  <text x="106" y="318" fill="#F8FAFC" font-family="Manrope, Arial, sans-serif" font-size="72" font-weight="900">Train Like a Warrior</text>
+  <text x="106" y="392" fill="#CBD5E1" font-family="Manrope, Arial, sans-serif" font-size="34" font-weight="700">Strength. Confidence. Discipline.</text>
+  <circle cx="965" cy="248" r="110" fill="#EF4444" fill-opacity="0.24"/>
+  <circle cx="1027" cy="404" r="58" fill="#FACC15" fill-opacity="0.2"/>
+  <path d="M854 458C888 328 977 278 1024 204C1063 279 1087 370 1045 458H854Z" fill="#111827"/>
+  <path d="M931 194C931 152 966 118 1008 118C1049 118 1084 152 1084 194C1084 236 1049 270 1008 270C966 270 931 236 931 194Z" fill="#1E293B"/>
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 0) rotate(90) scale(630 982.5)">
+      <stop stop-color="#7F1D1D"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
