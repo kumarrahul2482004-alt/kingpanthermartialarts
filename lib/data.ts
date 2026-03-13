@@ -309,6 +309,6 @@ export const faqs: FaqItem[] = [
 export const contactDetails = {
   phone: "9990262981",
   email: "r8802746909@gmail.com",
-  address: "123 Panther Way, Austin, TX 78701",
-  hours: "Mon-Fri 6am-9pm, Sat 8am-5pm",
+  address: "Dass Garden, New Delhi 110043",
+  hours: "Monday to Saturday: 5:30am - 10:00am, 5:00pm - 9:00pm",
 };

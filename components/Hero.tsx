@@ -1,9 +1,46 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import type { FormEvent } from "react";
+import { useState } from "react";
 import { ArrowRight, BadgeCheck, ShieldCheck, Star } from "lucide-react";
 import { contactDetails, trustBadges } from "@/lib/data";
 
 export function Hero() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setStatus("idle");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/r8802746909@gmail.com", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
     <section id="home" className="relative scroll-mt-28 overflow-hidden pb-14 pt-10 sm:pb-20">
       <div className="absolute inset-0 grid-overlay opacity-30" aria-hidden="true" />
@@ -74,10 +111,28 @@ export function Hero() {
                   alt="King Panther martial arts training session"
                   fill
                   priority
-                  className="object-cover"
+                  className="object-cover transition duration-700 hover:scale-[1.02]"
                   sizes="(min-width: 1024px) 40vw, 100vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/35 to-transparent" />
+                <div className="absolute inset-x-6 top-6 flex items-start justify-between gap-4">
+                  <div className="rounded-full border border-white/10 bg-slate-950/75 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.26em] text-red-200 backdrop-blur">
+                    Warrior Mindset
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-right backdrop-blur">
+                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-slate-400">Since</p>
+                    <p className="text-2xl font-black text-white">2018</p>
+                  </div>
+                </div>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="inline-flex max-w-[18rem] items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/72 px-4 py-3 backdrop-blur">
+                    <div className="h-3 w-3 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(74,222,128,0.9)]" />
+                    <div>
+                      <p className="text-sm font-extrabold text-white">Free Trial Booking Open</p>
+                      <p className="text-xs text-slate-300">Morning and evening batches available</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <section id="contact" className="relative scroll-mt-28 border-t border-white/10 bg-slate-950/95 p-6">
@@ -92,8 +147,7 @@ export function Hero() {
                 </div>
 
                 <form
-                  action="https://formsubmit.co/r8802746909@gmail.com"
-                  method="POST"
+                  onSubmit={handleSubmit}
                   className="grid gap-3 sm:grid-cols-2"
                 >
                   <input type="hidden" name="_subject" value="New Free Trial Class Lead - King Panther Academy" />
@@ -156,9 +210,21 @@ export function Hero() {
                     className="field min-h-28 resize-none sm:col-span-2"
                   />
                   <button type="submit" className="button-primary sm:col-span-2">
-                    Reserve My Trial Class
+                    {isSubmitting ? "Sending..." : "Reserve My Trial Class"}
                   </button>
                 </form>
+
+                {status === "success" ? (
+                  <p className="mt-4 rounded-2xl border border-emerald-400/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+                    Thanks. Your trial request was sent successfully, and we will contact you soon.
+                  </p>
+                ) : null}
+
+                {status === "error" ? (
+                  <p className="mt-4 rounded-2xl border border-red-400/20 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                    Something went wrong while sending your request. Please call {contactDetails.phone} or try again.
+                  </p>
+                ) : null}
 
                 <p className="mt-4 text-xs leading-6 text-slate-500">
                   Call {contactDetails.phone} or submit your details. Our team will help you choose the right class.
