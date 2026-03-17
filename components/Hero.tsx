@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { FormEvent } from "react";
 import { useState } from "react";
-import { ArrowRight, BadgeCheck, ShieldCheck, Star } from "lucide-react";
+import { ArrowRight, BadgeCheck, CheckCircle2, ShieldCheck, Star } from "lucide-react";
 import { contactDetails, trustBadges } from "@/lib/data";
 
 export function Hero() {
@@ -45,6 +45,8 @@ export function Hero() {
     <section id="home" className="relative scroll-mt-28 overflow-hidden pb-14 pt-10 sm:pb-20">
       <div className="absolute inset-0 grid-overlay opacity-30" aria-hidden="true" />
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-red-500/12 to-transparent" aria-hidden="true" />
+      <div className="absolute left-[6%] top-24 h-40 w-40 rounded-full bg-red-500/10 blur-3xl" aria-hidden="true" />
+      <div className="absolute right-[8%] top-40 h-52 w-52 rounded-full bg-yellow-300/10 blur-3xl" aria-hidden="true" />
       <div className="container-shell relative">
         <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="space-y-8">
@@ -57,7 +59,7 @@ export function Hero() {
               <h1 className="max-w-4xl text-5xl font-black leading-[0.96] text-white sm:text-6xl lg:text-7xl">
                 Unleash the <span className="text-highlight">Fighter Within</span>
               </h1>
-              <p className="section-copy max-w-2xl">
+              <p className="section-copy max-w-2xl text-lg sm:text-xl">
                 Train with elite martial arts coaches and transform your strength, confidence, and discipline.
               </p>
             </div>
@@ -81,6 +83,19 @@ export function Hero() {
                   <BadgeCheck className="h-4 w-4 text-yellow-300" />
                   {badge}
                 </span>
+              ))}
+            </div>
+
+            <div className="grid gap-4 rounded-[30px] border border-white/10 bg-white/[0.03] p-5 sm:grid-cols-3">
+              {[
+                "Morning and evening batches for working professionals and students",
+                "Structured beginner onboarding with coach-led progression",
+                "Real self-defense and athletic training in one system",
+              ].map((point) => (
+                <div key={point} className="flex gap-3">
+                  <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-yellow-300" />
+                  <p className="text-sm leading-6 text-slate-300">{point}</p>
+                </div>
               ))}
             </div>
 

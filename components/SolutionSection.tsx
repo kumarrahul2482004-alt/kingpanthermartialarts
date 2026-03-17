@@ -3,7 +3,7 @@ import { solutions, trainerHighlights } from "@/lib/data";
 
 export function SolutionSection() {
   return (
-    <section id="trainers" className="section-shell scroll-mt-28">
+    <section id="trainers" className="section-shell section-blend scroll-mt-28">
       <div className="container-shell">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
           <div className="space-y-4">
@@ -15,16 +15,21 @@ export function SolutionSection() {
             </p>
 
             <div className="mt-8 grid gap-4">
-              {solutions.map((solution) => {
+              {solutions.map((solution, index) => {
                 const Icon = solution.icon;
 
                 return (
-                  <div key={solution.title} className="panel flex gap-4 p-5">
+                  <div key={solution.title} className="panel premium-border flex gap-4 p-5">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-yellow-300/10 text-yellow-300">
                       <Icon className="h-6 w-6" />
                     </div>
-                    <div>
-                      <h3 className="text-lg font-extrabold text-white">{solution.title}</h3>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between gap-4">
+                        <h3 className="text-lg font-extrabold text-white">{solution.title}</h3>
+                        <span className="text-xs font-black uppercase tracking-[0.24em] text-slate-500">
+                          0{index + 1}
+                        </span>
+                      </div>
                       <p className="mt-2 text-sm leading-7 text-slate-400">{solution.description}</p>
                     </div>
                   </div>
@@ -33,15 +38,19 @@ export function SolutionSection() {
             </div>
           </div>
 
-          <div className="panel p-7 sm:p-8">
+          <div className="panel premium-border p-7 sm:p-8">
             <div>
               <span className="eyebrow">Meet the trainers</span>
               <h3 className="mt-4 text-3xl font-black text-white">Coaches who teach with authority and intention.</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-300">
+                Every coach brings a different specialty, but the same standard: disciplined teaching, safe progress,
+                and performance-focused training.
+              </p>
             </div>
 
             <div className="mt-8 space-y-4">
               {trainerHighlights.map((trainer) => (
-                <article key={trainer.name} className="rounded-[24px] border border-white/10 bg-slate-900/60 p-5">
+                <article key={trainer.name} className="rounded-[24px] border border-white/10 bg-slate-900/60 p-5 transition hover:border-red-400/30 hover:bg-slate-900/80">
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <h4 className="text-xl font-extrabold text-white">{trainer.name}</h4>

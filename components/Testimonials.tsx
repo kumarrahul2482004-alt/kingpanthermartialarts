@@ -49,7 +49,8 @@ export function Testimonials() {
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <article className="panel min-h-[320px] p-8 sm:p-10">
+          <article className="panel premium-border relative min-h-[320px] overflow-hidden p-8 sm:p-10">
+            <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-red-500/10 blur-3xl" aria-hidden="true" />
             <Quote className="h-10 w-10 text-red-300" />
             <p className="mt-6 max-w-3xl text-2xl font-bold leading-relaxed text-white sm:text-3xl">
               {testimonials[activeIndex].quote}
@@ -70,6 +71,11 @@ export function Testimonials() {
                 <p className="text-sm text-slate-400">{testimonials[activeIndex].role}</p>
               </div>
             </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <span className="stat-chip">Verified student review</span>
+              <span className="stat-chip">Confidence and fitness transformation</span>
+            </div>
           </article>
 
           <div className="grid gap-4">
@@ -78,8 +84,8 @@ export function Testimonials() {
                 key={testimonial.name}
                 type="button"
                 onClick={() => setActiveIndex(index)}
-                className={`panel text-left transition ${
-                  index === activeIndex ? "border-red-400/40 bg-red-500/10" : "border-white/10 bg-white/[0.04]"
+                className={`panel premium-border text-left transition ${
+                  index === activeIndex ? "border-red-400/40 bg-red-500/10 shadow-glow" : "border-white/10 bg-white/[0.04]"
                 } p-5`}
                 aria-pressed={index === activeIndex}
               >

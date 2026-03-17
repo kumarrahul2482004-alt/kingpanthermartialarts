@@ -69,16 +69,21 @@ export function Footer() {
         <div>
           <p className="text-sm font-black uppercase tracking-[0.22em] text-slate-500">Contact</p>
           <div className="mt-5 space-y-4 text-sm text-slate-300">
-            <p className="flex items-start gap-3">
+            <a href="tel:9990262981" className="flex items-start gap-3 transition hover:text-white">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-yellow-300" />
               <span>{contactDetails.phone}</span>
-            </p>
+            </a>
             <p className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-yellow-300" />
               <span>{contactDetails.address}</span>
             </p>
-            <p>{contactDetails.email}</p>
+            <a href={`mailto:${contactDetails.email}`} className="block transition hover:text-white">
+              {contactDetails.email}
+            </a>
             <p>{contactDetails.hours}</p>
+            <Link href="#contact" className="button-primary mt-4">
+              Book Free Trial
+            </Link>
           </div>
         </div>
       </div>
