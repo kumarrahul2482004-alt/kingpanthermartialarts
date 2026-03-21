@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { testimonials } from "@/lib/data";
 
 export function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const previous = () => {
     setActiveIndex((current) => (current === 0 ? testimonials.length - 1 : current - 1));
@@ -15,6 +16,18 @@ export function Testimonials() {
   const next = () => {
     setActiveIndex((current) => (current === testimonials.length - 1 ? 0 : current + 1));
   };
+
+  useEffect(() => {
+    if (isPaused) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current === testimonials.length - 1 ? 0 : current + 1));
+    }, 5500);
+
+    return () => window.clearInterval(interval);
+  }, [isPaused]);
 
   return (
     <section id="testimonials" className="section-shell scroll-mt-28">
@@ -48,8 +61,14 @@ export function Testimonials() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <article className="panel premium-border relative min-h-[320px] overflow-hidden p-8 sm:p-10">
+        <div
+          className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocusCapture={() => setIsPaused(true)}
+          onBlurCapture={() => setIsPaused(false)}
+        >
+          <article className="panel premium-border relative min-h-[320px] overflow-hidden p-8 sm:p-10" aria-live="polite">
             <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-red-500/10 blur-3xl" aria-hidden="true" />
             <Quote className="h-10 w-10 text-red-300" />
             <p className="mt-6 max-w-3xl text-2xl font-bold leading-relaxed text-white sm:text-3xl">
@@ -58,13 +77,7 @@ export function Testimonials() {
 
             <div className="mt-8 flex items-center gap-4">
               <div className="relative h-14 w-14 overflow-hidden rounded-full border border-white/10">
-                <Image
-                  src={testimonials[activeIndex].avatar}
-                  alt={testimonials[activeIndex].name}
-                  fill
-                  className="object-cover"
-                  sizes="56px"
-                />
+                <Image src={testimonials[activeIndex].avatar} alt={testimonials[activeIndex].name} fill className="object-cover" sizes="56px" />
               </div>
               <div>
                 <p className="text-lg font-extrabold text-white">{testimonials[activeIndex].name}</p>
@@ -72,9 +85,19 @@ export function Testimonials() {
               </div>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <span className="stat-chip">Verified student review</span>
-              <span className="stat-chip">Confidence and fitness transformation</span>
+            <div className="mt-6 flex items-center gap-2" aria-label="Select testimonial">
+              {testimonials.map((testimonial, index) => (
+                <button
+                  key={testimonial.name}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  className={`h-2.5 rounded-full transition ${
+                    index === activeIndex ? "w-8 bg-red-300" : "w-2.5 bg-white/30 hover:bg-white/50"
+                  }`}
+                  aria-label={`Show testimonial from ${testimonial.name}`}
+                  aria-pressed={index === activeIndex}
+                />
+              ))}
             </div>
           </article>
 
@@ -84,9 +107,9 @@ export function Testimonials() {
                 key={testimonial.name}
                 type="button"
                 onClick={() => setActiveIndex(index)}
-                className={`panel premium-border text-left transition ${
+                className={`panel premium-border p-5 text-left transition ${
                   index === activeIndex ? "border-red-400/40 bg-red-500/10 shadow-glow" : "border-white/10 bg-white/[0.04]"
-                } p-5`}
+                }`}
                 aria-pressed={index === activeIndex}
               >
                 <div className="flex items-center gap-4">

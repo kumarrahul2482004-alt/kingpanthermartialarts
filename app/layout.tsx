@@ -1,51 +1,60 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Manrope } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-manrope",
+  variable: "--font-inter",
 });
 
-const siteUrl = "https://kingpantheracademy.com";
-const title = "King Panther Martial Arts Academy | Train Like a Warrior";
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair",
+});
+
+const siteUrl = "https://vastraveda.com";
+const title = "Vastra Veda | Premium Sarees for Weddings, Festivals, and Everyday Elegance";
 const description =
-  "Professional martial arts training for beginners and advanced fighters. Learn discipline, strength, and real combat skills at King Panther Martial Arts Academy.";
+  "Shop premium handcrafted sarees with rich fabrics, elegant detailing, fast delivery, and a luxury online shopping experience built for every celebration.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title,
+  title: {
+    default: title,
+    template: "%s | Vastra Veda",
+  },
   description,
+  applicationName: "Vastra Veda",
   keywords: [
-    "martial arts academy",
-    "mma classes",
-    "kids martial arts",
-    "self defense classes",
-    "fighter conditioning",
-    "martial arts near me",
-    "combat training academy",
+    "premium sarees",
+    "wedding sarees",
+    "festive sarees",
+    "designer sarees online",
+    "indian ethnic wear",
+    "luxury saree brand",
+    "handcrafted sarees",
   ],
-  applicationName: "King Panther Martial Arts Academy",
-  category: "sports",
+  category: "fashion",
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: "Vastra Veda",
     title,
     description,
-    url: siteUrl,
-    siteName: "King Panther Martial Arts Academy",
-    locale: "en_US",
-    type: "website",
+    locale: "en_IN",
     images: [
       {
-        url: "/images/og-king-panther.svg",
+        url: "/images/og-vastra-veda.svg",
         width: 1200,
         height: 630,
-        alt: "King Panther Martial Arts Academy",
+        alt: "Vastra Veda premium saree collection",
       },
     ],
   },
@@ -53,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/images/og-king-panther.svg"],
+    images: ["/images/og-vastra-veda.svg"],
   },
   alternates: {
     canonical: "/",
@@ -61,44 +70,28 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#020617",
-  colorScheme: "dark",
+  themeColor: "#7C3AED",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "SportsActivityLocation",
-    name: "King Panther Martial Arts Academy",
-    description,
+    "@type": "Organization",
+    name: "Vastra Veda",
     url: siteUrl,
-    image: `${siteUrl}/images/og-king-panther.svg`,
-    telephone: "9990262981",
-    email: "r8802746909@gmail.com",
-    openingHours: ["Mo-Sa 05:30-10:00", "Mo-Sa 17:00-21:00"],
-    priceRange: "$$",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Dass Garden",
-      addressLocality: "New Delhi",
-      addressRegion: "DL",
-      postalCode: "110043",
-      addressCountry: "IN",
-    },
+    logo: `${siteUrl}/images/logo-mark.svg`,
+    image: `${siteUrl}/images/og-vastra-veda.svg`,
+    description,
     sameAs: [
-      "https://www.instagram.com/kingpantheracademy",
-      "https://www.facebook.com/kingpantheracademy",
-      "https://www.youtube.com/@kingpantheracademy",
+      "https://www.instagram.com/vastraveda",
+      "https://www.facebook.com/vastraveda",
+      "https://www.pinterest.com/vastraveda",
     ],
   };
 
   return (
-    <html lang="en" className={manrope.variable}>
-      <body className={`${manrope.className} min-h-screen bg-background text-slate-100 antialiased`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <body className="min-h-screen bg-rose-50 font-sans text-ink-900 antialiased">
         {children}
         <script
           type="application/ld+json"
