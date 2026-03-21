@@ -9,15 +9,6 @@ script = ""
 name = "Run"
 icon = "run"
 command = '''
-cd D:\ssc
-npm install
-npm run dev
-'''
-
-[[actions]]
-name = "1"
-icon = "tool"
-command = '''
 npm run build
-npm start
+npm run start
 '''
